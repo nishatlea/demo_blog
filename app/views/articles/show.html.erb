@@ -6,10 +6,10 @@
 <%= link_to "Home", articles_path %>
 
 <h3> Comments </h3>
-
+<%# unless comment.archived? %>
 <ul>
   <% @article.comments.each do |comment| %>
-
+    <% unless comment.archived? %>
   <li> <strong> Commenter: </strong> <%= comment.commenter %></li>
     <li> <strong> Comment body: </strong><%= comment.body  %></li>
 
@@ -18,8 +18,10 @@
        turbo_method: :delete,
        turbo_confirm: "Are you sure?"
      } %>
+      <% end %>
     <% end %>
 </ul>
+
 
 <%= render 'comments/form' %>
 
